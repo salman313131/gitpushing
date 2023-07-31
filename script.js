@@ -12,8 +12,8 @@ function onSubmit(e){
         setTimeout(()=>msg.remove(),3000)
     }
     else{
-        localStorage.setItem('name',userName.value)
-        localStorage.setItem('email',email.value)
+        const storage = JSON.stringify({name:userName.value,email:email.value})
+        localStorage.setItem('newObj',storage)
         userName.value = ''
         email.value ='';
     }

@@ -13,8 +13,12 @@ function onSubmit(e){
     }
     else{
         const storage = JSON.stringify({name:userName.value,email:email.value})
-        localStorage.setItem('newObj',storage)
-        userName.value = ''
+        localStorage.setItem(email.value,storage)
+        const users = document.getElementById('users')
+        const newLi = document.createElement('li')
+        newLi.appendChild(document.createTextNode(`${userName.value} ${email.value}`));
+        users.appendChild(newLi);
+        userName.value = '';
         email.value ='';
     }
 }

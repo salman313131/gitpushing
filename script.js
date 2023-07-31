@@ -1,6 +1,8 @@
-const btn = document.querySelector('.btn')
+const form = document.querySelector('#myForm')
+const items = document.getElementById('users')
 
-btn.addEventListener('click',onSubmit)
+form.addEventListener('submit',onSubmit)
+items.addEventListener('click',removeItem)
 
 function onSubmit(e){
     e.preventDefault();
@@ -17,8 +19,20 @@ function onSubmit(e){
         const users = document.getElementById('users')
         const newLi = document.createElement('li')
         newLi.appendChild(document.createTextNode(`${userName.value} ${email.value}`));
+        const newBtn = document.createElement('button')
+        newBtn.textContent = ' Delete'
+        newBtn.className = 'delete'
+        newLi.appendChild(newBtn);
         users.appendChild(newLi);
         userName.value = '';
         email.value ='';
+    }
+}
+function removeItem(e){
+    if (e.target.classList.contains('delete')){
+        const li = e.target.parentElement;
+        const listLi = li.textContent.split(" ");
+        items.removeChild(li)
+        localStorage.removeItem(listLi[1])
     }
 }
